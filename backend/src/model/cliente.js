@@ -4,16 +4,16 @@ class Cliente {
     constructor() {
         this.model = database.db.define('clientes', {
             id: {
-                type: DataTypes.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
             nome: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false
             },
             contato: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false,
                 unique: true
             }

@@ -1,31 +1,32 @@
 import database from "../config/database.js"
+import Cliente from './cliente.js'
 
 class Pet {
     constructor() {
         this.model = database.db.define('pets', {
             id: {
-                type: DataTypes.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
             nome: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false
             },
             raca: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false
             },
             sexo: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false
             },
             porte: {
-                type: DataTypes.STRING,
+                type: database.db.Sequelize.STRING,
                 allowNull: false
             },
             clienteId: {
-                type: DataTypes.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 allowNull: false,
                 references: {
                     model: 'clientes',
@@ -33,6 +34,10 @@ class Pet {
                 }
             }
         });
+
+        this.model.belongsTo(Cliente, { foreignKey: 'clienteId' });
+        Cliente.hasMany(this.model, { foreignKey: 'clienteId', onDelete: 'CASCADE' });
+
     }
 }
 

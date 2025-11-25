@@ -12,7 +12,7 @@ class Database {
             host: 'localhost',
             username: 'root',
             password: '',
-            dialect: 'mysql'
+            dialect: 'mysql',
         })
     }
 }

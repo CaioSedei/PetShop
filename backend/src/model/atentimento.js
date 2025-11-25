@@ -1,28 +1,29 @@
 import database from "../config/database.js"
+import Pet from './pet.js'
 
 class Atendimento {
     constructor() {
         this.model = database.db.define('atendimentos', {
             id: {
-                type: DataTypes.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
             data: {
-                type: DataTypes.DATE,
+                type: database.db.Sequelize.DATE,
                 allowNull: false
             },
             valor: {
-                type: DataTypes.DECIMAL,
+                type: database.db.Sequelize.DECIMAL,
                 allowNull: false
             },
             concluido: {
-                type: DataTypes.BOOLEAN,
+                type: database.db.Sequelize.BOOLEAN,
                 allowNull: false,
                 defaultValue: false
             },
             petId: {
-                type: DataTypes.INTEGER,
+                type: database.db.Sequelize.INTEGER,
                 allowNull: false,
                 references: {
                     model: 'pets',
@@ -30,6 +31,10 @@ class Atendimento {
                 }
             }
         });
+
+        this.model.belongsTo(Pet, { foreignKey: 'petId' });
+        Pet.hasOne(this.model, { foreignKey: 'petId', onDelete: 'CASCADE' });
+
     }
 }
 

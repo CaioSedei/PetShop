@@ -9,7 +9,7 @@ app.use('/api', router);
 
 
 database.db
-    .sync({ force: true })
+    .sync({ force: false })
     .then((_) => {
         app.listen(PORT, () => {
             console.info("Servidor rodando na porta "+PORT)

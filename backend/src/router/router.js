@@ -1,10 +1,11 @@
 import express from 'express';
 import ControllerCliente from '../controller/cliente.js';
 import ControllerPet from '../controller/pet.js';
+import ControllerAtendimento from '../controller/atentimento.js'
 
 const router = express.Router();
 
-// Rotas de Cliente
+// // Rotas de Cliente
 router.get('/clientes', ControllerCliente.FindAll)
 router.get('/cliente/:id', ControllerCliente.FindOne)
 router.post('/cliente', ControllerCliente.Create)
@@ -19,12 +20,12 @@ router.put('/pet/:id', ControllerPet.Update)
 router.delete('/pet/:id', ControllerPet.Delete)
 
 // // Rotas de Atendimento
-// router.get('/atendimentos', ControllerAtendimento.FindAll)
-// router.get('/atendimento/:id', ControllerAtendimento.FindOne)
-// router.post('/atendimento', ControllerAtendimento.Create)
-// router.put('/atendimento/:id', ControllerAtendimento.Update)
-// router.delete('/atendimento/:id', ControllerAtendimento.Delete)
-// router.get('/atendimentos/:id', ControllerAtendimento.getAtendimentosByPetId)
+router.get('/atendimentos', ControllerAtendimento.FindAll)
+router.get('/atendimento/:id', ControllerAtendimento.FindOne)
+router.post('/atendimento', ControllerAtendimento.Create)
+router.put('/atendimento/:id', ControllerAtendimento.Update)
+router.delete('/atendimento/:id', ControllerAtendimento.Delete)
+// router.get('/atendimentos/:id', ControllerAtendimento.FindAtendimentosByPetId)
 
 export default router;
 
